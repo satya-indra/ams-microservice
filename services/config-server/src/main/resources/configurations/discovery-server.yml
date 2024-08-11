@@ -1,0 +1,11 @@
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    registerWithEureka: false # why false ? so that the discovery server does not register itself
+    fetchRegistry: false # why false ? so that the discovery server does not fetch registry from itself
+    serviceUrl:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+
+server:
+  port: 8761
