@@ -1,0 +1,65 @@
+server:
+  port: 8222
+spring:
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        - id: user-service
+          uri: lb:http://USER-SERVICE
+          predicates:
+            - Path=/api/v1/users/**
+        - id: order-service
+          uri: lb:http://ORDER-SERVICE
+          predicates:
+            - Path=/api/v1/orders/**
+        - id: order-lines-service
+          uri: lb:http://ORDER-SERVICE
+          predicates:
+            - Path=/api/v1/order-lines/**
+        - id: product-service
+          uri: lb:http://PRODUCT-SERVICE
+          predicates:
+            - Path=/api/v1/products/**
+        - id: payment-service
+          uri: lb:http://PAYMENT-SERVICE
+          predicates:
+            - Path=/api/v1/payments/**
+
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: "http://localhost:8080/realms/master"
+          jwk-set-uri: "http://localhost:8080/realms/master/protocol/openid-connect/certs"
+          # at the startup of resource server, it is going to connect, and it'll e used to download a public certificate from keycloak,
+          # whereas keyclock has a private certificate saved in it, and using it, keyclock can only issue a new token
+          # but with public certificate, resource server can validate if given certificate is valid or not
+          # It will be used to verify later on, when we make request, to check if token given by user is valid or not
+
+#springdoc:
+#  enable-native-support: true
+#  api-docs:
+#    enabled: true
+#  swagger-ui:
+##    enabled: true
+##    path: /swagger-ui.html
+##    com.alibou.gateway.config-url: /v3/api-docs/swagger-com.alibou.gateway.config
+#    urls:
+#      - url: /v3/api-docs
+#        name: API Gateway Service
+#        primaryName: API Gateway Service
+#      - url: /v3/api-docs
+#        name: User Service
+#        primaryName: User Service
+#      - url: /product-service/v3/api-docs
+#        name: Product Service
+#        primaryName: Product Service
+#      - url: /order-service/v3/api-docs
+#        name: Order Service
+#        primaryName: Order Service
+#      - url: /payment-service/v3/api-docs
+#        name: Payment Service
+#        primaryName: Payment Service

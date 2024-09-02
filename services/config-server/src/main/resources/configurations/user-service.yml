@@ -1,0 +1,39 @@
+spring:
+  data:
+    mongodb:
+      username: admin
+      password: admin
+      host: localhost
+      port: 27017
+      database: user
+      authentication-database: admin
+
+#  cloud:
+#    inetutils:
+#      preferred-networks: 127.0.0.1
+
+server:
+  port: 8090
+
+
+#  servlet:
+#    context-path: /user-service
+#
+#springdoc:
+#  api-docs:
+#    path: /v3/api-docs
+#  swagger-ui:
+#    path: /swagger-ui.html
+#    configUrl: /user-service
+
+#openapi:
+#  service:
+#    title: user-service doc
+#    version: 1.0.0
+#    url: http://localhost:8090
+
+#springdoc:
+#  api-docs:
+#    path: /swagger-ui.html
+#  swagger-ui:
+#    path: /user-service/swagger-ui.html

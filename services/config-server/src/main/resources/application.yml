@@ -1,6 +1,6 @@
 spring:
   application:
-    name: config-server
+    name: com.satyen.gateway.config-server
   profiles:
     active: native
   cloud:

@@ -1,0 +1,28 @@
+server:
+  port: 8050
+
+spring:
+  datasource:
+      url: jdbc:postgresql://localhost:5432/
+
+      username: admin
+      password: admin
+#      driver-class-name: com.postgresql.Driver //  adding driver here cuased start failure
+  jpa:
+      hibernate:
+        ddl-auto: validate
+      database: postgresql
+      database-platform: org.hibernate.dialect.PostgreSQLDialect
+  flyway:
+      enabled: true
+      baseline-on-migrate: true
+      baseline-version: 0
+      baseline-description: "init"
+      user: ${spring.datasource.username}
+      password: ${spring.datasource.password}
+
+#springdoc:
+#  api-docs:
+#    path: /product-service/v3/api-docs
+#  swagger-ui:
+#    path: /product-service/swagger-ui.html
