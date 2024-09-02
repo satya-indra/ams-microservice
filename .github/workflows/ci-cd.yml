@@ -36,7 +36,7 @@ jobs:
     needs: build
     strategy:
       matrix:
-        service: [user-service, order-service, payment-service] # List all your microservices here
+        service: [user-service] # List all your microservices here
 
     steps:
     - name: Checkout code
@@ -63,7 +63,7 @@ jobs:
     needs: docker
     strategy:
       matrix:
-        service: [user-service, order-service, payment-service] # List all your microservices here
+        service: [user-service] # List all your microservices here
 
     steps:
     - name: Checkout code
